@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo Rodi Inmobiliaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Grupo Rodi Inmobiliaria</h1>
+        <p>Soluciones Inteligentes para el Mercado Inmobiliario</p>
+    </header>
+    <main class="container my-5">
+        <h2 class="text-center mb-4">Calculadora de Proyectos Inmobiliarios</h2>
+        <form action="/calculate" method="post" class="bg-white p-4 rounded shadow">
+            <div class="mb-3">
+                <label for="lot_area" class="form-label">Área del Lote (m²):</label>
+                <input type="number" id="lot_area" name="lot_area" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="fos" class="form-label">FOS (%):</label>
+                <input type="number" id="fos" name="fos" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="fot" class="form-label">FOT:</label>
+                <input type="number" id="fot" name="fot" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="construction_cost" class="form-label">Costo de Construcción (por m²):</label>
+                <input type="number" id="construction_cost" name="construction_cost" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="sale_price" class="form-label">Precio de Venta (por m²):</label>
+                <input type="number" id="sale_price" name="sale_price" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Calcular</button>
+        </form>
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Herramienta desarrollada exclusivamente por Grupo Rodi Inmobiliaria</p>
+    </footer>
+</body>
+</html>
