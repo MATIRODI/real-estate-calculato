@@ -11,21 +11,21 @@
         <h1>Resultados del Proyecto</h1>
     </header>
     <main class="container my-5">
-        <h2 class="text-center">Distribución y Resultados Financieros</h2>
+        <h2 class="text-center">Distribución de Departamentos y Locales</h2>
         <ul class="list-group mb-4">
             <li class="list-group-item"><strong>Área Construible Total:</strong> {{ total_buildable_area }} m²</li>
+            <li class="list-group-item"><strong>Área Ocupada en Planta Baja:</strong> {{ ground_floor_area }} m²</li>
             <li class="list-group-item"><strong>Departamentos en Planta Baja:</strong> {{ departamentos_pb }}</li>
-            <li class="list-group-item"><strong>Locales Comerciales en Planta Baja:</strong> {{ locales_comerciales_pb }}</li>
-            <li class="list-group-item"><strong>Total de Departamentos (incluyendo pisos superiores):</strong> {{ total_departamentos }}</li>
+            <li class="list-group-item"><strong>Locales Comerciales en Planta Baja:</strong> {{ local_count }}</li>
+            <li class="list-group-item"><strong>Departamentos por Piso:</strong> {{ departamentos_por_piso }}</li>
+            <li class="list-group-item"><strong>Total de Departamentos:</strong> {{ departamentos_totales }}</li>
+            <li class="list-group-item"><strong>Cantidad de Pisos:</strong> PB + {{ max_floors - 1 }}</li>
         </ul>
         <h3 class="text-center">Resultados Financieros</h3>
         <ul class="list-group mb-4">
-            <li class="list-group-item"><strong>Ingresos por Departamentos:</strong> ${{ ingresos_departamentos }}</li>
-            <li class="list-group-item"><strong>Ingresos por Locales Comerciales:</strong> ${{ ingresos_locales }}</li>
-            <li class="list-group-item"><strong>Total de Ingresos:</strong> ${{ total_ingresos }}</li>
-            <li class="list-group-item"><strong>Costos Totales de Construcción:</strong> ${{ total_costos }}</li>
+            <li class="list-group-item"><strong>Total de Costos de Construcción:</strong> ${{ total_cost }}</li>
+            <li class="list-group-item"><strong>Ingresos Totales por Venta:</strong> ${{ total_ingresos }}</li>
             <li class="list-group-item"><strong>Beneficio del Proyecto:</strong> ${{ beneficio }}</li>
-            <li class="list-group-item"><strong>Retorno de la Inversión (ROI):</strong> {{ roi }}%</li>
         </ul>
         <a href="/" class="btn btn-primary w-100">Volver al Inicio</a>
     </main>
@@ -34,4 +34,3 @@
     </footer>
 </body>
 </html>
-

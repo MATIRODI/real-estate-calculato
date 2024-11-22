@@ -19,14 +19,14 @@
                 <label for="fos" class="form-label">FOS (%):</label>
                 <input type="number" id="fos" name="fos" class="form-control" required min="1" max="100">
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" id="build_locals" name="build_locals" class="form-check-input">
-                <label for="build_locals" class="form-check-label">¿Construir Locales Comerciales?</label>
-            </div>
-            <div class="mb-3" id="local_count_container" style="display: none;">
-                <label for="local_count" class="form-label">Cantidad de Locales Comerciales Deseada:</label>
-                <input type="number" id="local_count" name="local_count" class="form-control" min="1">
-            </div>
+            <div class="mb-3">
+                <label for="max_floors" class="form-label">Cantidad Máxima de Pisos:</label>
+                <select id="max_floors" name="max_floors" class="form-select" required>
+                    {% for floor in range(1, 19) %}
+                        <option value="{{ floor }}">PB + {{ floor - 1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>            
             <button type="submit" class="btn btn-primary w-100">Calcular Resultados</button>
         </form>
     </main>

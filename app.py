@@ -2,41 +2,14 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+# Ruta para la página inicial (Etapa 1)
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/calculate', methods=['POST'])
-def calculate():
-    # Inputs del usuario
-    lot_area = float(request.form['lot_area'])  # Área del lote
-    fos = float(request.form['fos']) / 100  # FOS convertido a decimal
-    fot = float(request.form['fot'])  # FOT ingresado por el usuario
-    local_size = float(request.form['local_size'])  # Tamaño promedio por local comercial
-    build_locals = 'build_locals' in request.form  # Checkbox para locales comerciales
-
-    # Cálculos básicos
-    total_buildable_area = lot_area * fot  # Área construible total
-    ground_floor_area = lot_area * fos  # Área ocupada en planta baja
-
-    # Validación de datos
-    if local_size < 20:
-        return "El tamaño promedio por local debe ser al menos 20 m².", 400
-
-    # Renderizar resultados de la primera etapa
-    return render_template(
-        'results_stage1.html',
-        total_buildable_area=total_buildable_area,
-        ground_floor_area=ground_floor_area,
-        lot_area=lot_area,
-        fos=fos,
-        fot=fot,
-        local_size=local_size,
-        build_locals=build_locals
-    )
-
-@@app.route('/calculate', methods=['POST'])
-def calculate():
+# Ruta para calcular los datos básicos (Etapa 1)
+@app.route('/calculate_stage1', methods=['POST'])
+def calculate_stage1():
     # Inputs del usuario
     lot_area = float(request.form['lot_area'])  # Área del lote
     fot = float(request.form['fot'])  # FOT ingresado por el usuario
@@ -52,6 +25,7 @@ def calculate():
         fot=fot
     )
 
+# Ruta para calcular resultados finales (Etapa 2)
 @app.route('/stage2', methods=['POST'])
 def stage2():
     # Datos de la primera etapa
@@ -63,6 +37,7 @@ def stage2():
     fos = float(request.form['fos']) / 100  # FOS convertido a decimal
     build_locals = 'build_locals' in request.form  # Checkbox para locales comerciales
     local_count = int(request.form['local_count']) if 'local_count' in request.form and request.form['local_count'] else 0
+    max_floors = int(request.form['max_floors'])  # Cantidad de pisos seleccionada
 
     # Cálculo del área de planta baja
     ground_floor_area = lot_area * fos
@@ -81,9 +56,14 @@ def stage2():
         departamentos_pb = ground_floor_area // 50
         local_count = 0
 
+    # Cálculo de departamentos en pisos superiores
+    area_per_floor = (total_buildable_area - ground_floor_area) / max_floors
+    departamentos_por_piso = area_per_floor // 50  # Asumimos departamentos de 50 m²
+    departamentos_totales = departamentos_pb + (departamentos_por_piso * max_floors)
+
     # Calcular resultados adicionales
     total_cost = total_buildable_area * 300  # Costo estimado por m²
-    total_ingresos = departamentos_pb * 50000 + local_count * 100000
+    total_ingresos = departamentos_totales * 50000 + local_count * 100000
     beneficio = total_ingresos - total_cost
 
     return render_template(
@@ -92,14 +72,18 @@ def stage2():
         ground_floor_area=ground_floor_area,
         departamentos_pb=departamentos_pb,
         local_count=local_count,
+        max_floors=max_floors,
+        departamentos_por_piso=departamentos_por_piso,
+        departamentos_totales=departamentos_totales,
         total_cost=total_cost,
         total_ingresos=total_ingresos,
         beneficio=beneficio
     )
 
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
-import os
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Usa el puerto asignado por Render

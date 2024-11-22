@@ -13,26 +13,14 @@
     </header>
     <main class="container my-5">
         <h2 class="text-center">Calculadora de Proyectos</h2>
-        <form action="/calculate" method="post" class="bg-white p-4 rounded shadow">
+        <form action="/calculate_stage1" method="post" class="bg-white p-4 rounded shadow">
             <div class="mb-3">
                 <label for="lot_area" class="form-label">Área del Lote (m²):</label>
                 <input type="number" id="lot_area" name="lot_area" class="form-control" required min="1">
             </div>
             <div class="mb-3">
-                <label for="fos" class="form-label">FOS (%):</label>
-                <input type="number" id="fos" name="fos" class="form-control" required min="1" max="100">
-            </div>
-            <div class="mb-3">
                 <label for="fot" class="form-label">FOT:</label>
                 <input type="number" id="fot" name="fot" class="form-control" required min="1">
-            </div>
-            <div class="mb-3">
-                <label for="local_size" class="form-label">Tamaño Promedio por Local Comercial (m²):</label>
-                <input type="number" id="local_size" name="local_size" class="form-control" required min="20" value="100">
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" id="build_locals" name="build_locals" class="form-check-input">
-                <label for="build_locals" class="form-check-label">¿Construir Locales Comerciales?</label>
             </div>
             <button type="submit" class="btn btn-primary w-100">Calcular Etapa 1</button>
         </form>
