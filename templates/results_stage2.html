@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Finales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Resultados del Proyecto</h1>
+    </header>
+    <main class="container my-5">
+        <h2 class="text-center">Distribución y Resultados Financieros</h2>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><strong>Área Construible Total:</strong> {{ total_buildable_area }} m²</li>
+            <li class="list-group-item"><strong>Departamentos en Planta Baja:</strong> {{ departamentos_pb }}</li>
+            <li class="list-group-item"><strong>Locales Comerciales en Planta Baja:</strong> {{ locales_comerciales_pb }}</li>
+            <li class="list-group-item"><strong>Total de Departamentos (incluyendo pisos superiores):</strong> {{ total_departamentos }}</li>
+        </ul>
+        <h3 class="text-center">Resultados Financieros</h3>
+        <ul class="list-group mb-4">
+            <li class="list-group-item"><strong>Ingresos por Departamentos:</strong> ${{ ingresos_departamentos }}</li>
+            <li class="list-group-item"><strong>Ingresos por Locales Comerciales:</strong> ${{ ingresos_locales }}</li>
+            <li class="list-group-item"><strong>Total de Ingresos:</strong> ${{ total_ingresos }}</li>
+            <li class="list-group-item"><strong>Costos Totales de Construcción:</strong> ${{ total_costos }}</li>
+            <li class="list-group-item"><strong>Beneficio del Proyecto:</strong> ${{ beneficio }}</li>
+            <li class="list-group-item"><strong>Retorno de la Inversión (ROI):</strong> {{ roi }}%</li>
+        </ul>
+        <a href="/" class="btn btn-primary w-100">Volver al Inicio</a>
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>Herramienta desarrollada exclusivamente por Grupo Rodi Inmobiliaria</p>
+    </footer>
+</body>
+</html>
+
